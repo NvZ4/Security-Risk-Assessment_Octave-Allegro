@@ -1,0 +1,147 @@
+/* Resetting default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Container for the form */
+.form-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Heading styles */
+h2 {
+    color: #2c3e50;
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Form groups */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Labels */
+label {
+    font-size: 1rem;
+    color: #7f8c8d;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Textarea and input fields */
+textarea,
+input[type="number"],
+select {
+    width: 100%;
+    max-width: 800px;
+    /* Set a wider max width */
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+    resize: vertical;
+    /* Allow vertical resizing */
+}
+
+textarea {
+    min-height: 180px;
+    /* Increase the height for better readability */
+    max-width: 800px;
+    /* Set a wider max width */
+}
+
+textarea:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+
+/* Button styles */
+button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn {
+    background-color: #e74c3c;
+    color: white;
+    margin-right: 1rem;
+}
+
+.back-btn:hover {
+    background-color: #c0392b;
+}
+
+.next-btn {
+    background-color: #3498db;
+    color: white;
+}
+
+.next-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Flex container for form actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+/* Score section */
+.risk-score,
+.calculated-score {
+    font-weight: 600;
+}
+
+.risk-score {
+    color: #3498db;
+}
+
+.calculated-score {
+    color: #e67e22;
+}
+
+/* Placeholder styles */
+::placeholder {
+    color: #95a5a6;
+    opacity: 1;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}

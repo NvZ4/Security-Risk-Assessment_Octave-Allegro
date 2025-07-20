@@ -1,0 +1,73 @@
+-- CREATE TABLE projects (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     title VARCHAR(255) NOT NULL
+-- );
+-- 
+-- CREATE TABLE impact_priorities (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     project_id INT,
+--     reputation_confidence INT NOT NULL,
+--     financial INT NOT NULL,
+--     productivity INT NOT NULL,
+--     safety_health INT NOT NULL,
+--     fines_legal_penalties INT NOT NULL,
+--     FOREIGN KEY (project_id) REFERENCES projects(id)
+-- );
+-- CREATE TABLE asset_informations (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     project_id INT NOT NULL,
+--     critical_asset VARCHAR(255) NOT NULL,
+--     rationale_for_selection TEXT NOT NULL,
+--     description TEXT NOT NULL,
+--     owners TEXT NOT NULL,
+--     confidentiality TEXT NOT NULL,
+--     integrity TEXT NOT NULL,
+--     availability TEXT NOT NULL,
+--     most_important_security_requirement VARCHAR(255) NOT NULL,
+--     FOREIGN KEY (project_id) REFERENCES projects(id)
+-- );
+-- CREATE TABLE asset_containers (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     asset_id INT NOT NULL,
+--     project_id INT NOT NULL,
+--     owners TEXT NOT NULL,
+--     technical_internal TEXT NOT NULL,
+--     technical_external TEXT NOT NULL,
+--     physical_internal TEXT NOT NULL,
+--     physical_external TEXT NOT NULL,
+--     people_internal TEXT NOT NULL,
+--     people_external TEXT NOT NULL,
+--     FOREIGN KEY (asset_id) REFERENCES asset_informations(id),
+--     FOREIGN KEY (project_id) REFERENCES projects(id)
+-- );
+-- CREATE TABLE asset_risks(
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     project_id INT NOT NULL,
+--     asset_id INT NOT NULL,
+--     area_of_concern TEXT NOT NULL,
+--     actor TEXT NOT NULL,
+--     means TEXT NOT NULL,
+--     motive TEXT NOT NULL,
+--     outcome TEXT NOT NULL,
+--     security_requirements TEXT NOT NULL,
+--     probability ENUM('High', 'Medium', 'Low') NOT NULL,
+--     consequences TEXT NOT NULL,
+--     reputation_confidence  ENUM('High', 'Medium', 'Low') NOT NULL,
+--     financial ENUM('High', 'Medium', 'Low') NOT NULL,
+--     productivity ENUM('High', 'Medium', 'Low') NOT NULL,
+--     safety_health ENUM('High', 'Medium', 'Low') NOT NULL,
+--     fines_legal_penalties ENUM('High', 'Medium', 'Low') NOT NULL,
+--     relative_score INT NOT NULL,
+--     FOREIGN KEY (asset_id) REFERENCES asset_informations(id),
+--     FOREIGN KEY (project_id) REFERENCES projects(id)
+-- );
+-- CREATE TABLE risk_mitigations(
+--    id INT AUTO_INCREMENT PRIMARY KEY,
+--    project_id INT NOT NULL,
+--    risk_id INT NOT NULL,
+--    technical_mitigation TEXT NOT NULL,
+--    physical_mitigation TEXT NOT NULL,
+--    people_mitigation TEXT NOT NULL,
+--    FOREIGN KEY (risk_id) REFERENCES asset_risks(id),
+--    FOREIGN KEY (project_id) REFERENCES projects(id)
+--)

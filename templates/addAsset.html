@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Asset</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='addAsset.css') }}">
+    <script>
+        function calculateRelativeScore() {
+            const severityMapping = { 'Low': 1, 'Medium': 2, 'High': 3 };
+            const financial = severityMapping[document.querySelector("select[name='financial']").value];
+            const productivity = severityMapping[document.querySelector("select[name='productivity']").value];
+            const safetyHealth = severityMapping[document.querySelector("select[name='safety_health']").value];
+            const fines = severityMapping[document.querySelector("select[name='fines']").value];
+
+            // Properly passing Jinja2 variables as JSON numbers
+            const impactPriority = JSON.parse('{{ impact_priority | tojson | safe }}');
+
+            const relativeScore = (impactPriority.financial * financial) +
+                (impactPriority.productivity * productivity) +
+                (impactPriority.safety_health * safetyHealth) +
+                (impactPriority.fines_legal_penalties * fines);
+
+            document.getElementById('relative-score').textContent = relativeScore;
+        }
+    </script>
+</head>
+
+<body>
+    <form action="{{ url_for('add_asset', project_id=project_id) }}" method="POST">
+        <h2>Add New Asset to Project</h2>
+        <label for="critical-asset">Critical Asset:</label>
+        <input type="text" name="critical-asset" required>
+
+        <label for="rationale">Rationale for Selection:</label>
+        <textarea name="rationale" required></textarea>
+
+        <label for="description">Description:</label>
+        <textarea name="description" required></textarea>
+
+        <label for="owners">Owners:</label>
+        <input type="text" name="owners" required>
+
+        <label for="confidentiality">Confidentiality:</label>
+        <input type="text" name="confidentiality" required>
+
+        <label for="integrity">Integrity:</label>
+        <input type="text" name="integrity" required>
+
+        <label for="availability">Availability:</label>
+        <input type="text" name="availability" required>
+
+        <label for="most-important-security">Most Important Security Requirement</label>
+        <select id="most-important-security" name="most-important-security" required>
+            <option value="confidentiality">Confidentiality</option>
+            <option value="integrity">Integrity</option>
+            <option value="availability">Availability</option>
+        </select>
+
+        <h3>Asset Container</h3>
+        <label for="technical-internal">Technical (Internal):</label>
+        <input type="text" name="technical-internal" required>
+
+        <label for="technical-external">Technical (External):</label>
+        <input type="text" name="technical-external" required>
+
+        <label for="physical-internal">Physical (Internal):</label>
+        <input type="text" name="physical-internal" required>
+
+        <label for="physical-external">Physical (External):</label>
+        <input type="text" name="physical-external" required>
+
+        <label for="people-internal">People (Internal):</label>
+        <input type="text" name="people-internal" required>
+
+        <label for="people-external">People (External):</label>
+        <input type="text" name="people-external" required>
+
+        <h3>Asset Risk</h3>
+        <label for="area-of-concern">Area of Concern:</label>
+        <textarea name="area-of-concern" required></textarea>
+
+        <label for="actor">Actor:</label>
+        <input type="text" name="actor" required>
+
+        <label for="means">Means:</label>
+        <input type="text" name="means" required>
+
+        <label for="motive">Motive:</label>
+        <input type="text" name="motive" required>
+
+        <label for="outcome">Outcome:</label>
+        <input type="text" name="outcome" required>
+
+        <label for="security-requirements">Security Requirements:</label>
+        <input type="text" name="security-requirements" required>
+
+        <label for="probability">Probability:</label>
+        <select name="probability" required>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+
+        <label for="consequences">Consequences:</label>
+        <textarea name="consequences" required></textarea>
+
+        <h3>Severity Selection</h3>
+        <label for="financial">Financial:</label>
+        <select name="financial" required onchange="calculateRelativeScore()">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <label for="productivity">Productivity:</label>
+        <select name="productivity" required onchange="calculateRelativeScore()">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <label for="safety_health">Safety & Health:</label>
+        <select name="safety_health" required onchange="calculateRelativeScore()">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <label for="fines">Fines & Legal Penalties:</label>
+        <select name="fines" required onchange="calculateRelativeScore()">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <h3>Calculated Relative Score</h3>
+        <p><strong>Relative Score:</strong> <span id="relative-score">0</span></p>
+
+        <h3>Risk Mitigation</h3>
+        <label for="technical-mitigation">Technical Mitigation:</label>
+        <textarea name="technical-mitigation" required></textarea>
+
+        <label for="physical-mitigation">Physical Mitigation:</label>
+        <textarea name="physical-mitigation" required></textarea>
+
+        <label for="people-mitigation">People Mitigation:</label>
+        <textarea name="people-mitigation" required></textarea>
+
+        <button type="submit">Add Asset</button>
+    </form>
+</body>
+
+</html>

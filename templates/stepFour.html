@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step Four</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stepFour.css') }}">
+
+</head>
+
+<body>
+    <form action="/stepFour" method="post">
+        <div class="form-container">
+            <h2>Identify Risk/Threats</h2>
+
+            <div class="form-group">
+                <label for="area-of-concern">Area of Concern</label>
+                <textarea id="area-of-concern" name="area-of-concern"
+                    placeholder="Describe a real-world condition or situation that could affect the asset."
+                    required></textarea>
+            </div>
+
+            <div class="fom-group">
+                <label for="actor">Actor</label>
+                <textarea id="actor" name="actor" placeholder="Who would exploit the weakness?" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="means">Means</label>
+                <textarea id="means" name="means" placeholder="What is the means of exploitation?" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="motive">Motive/label>
+                    <textarea id="motive" name="motive" placeholder="What is the actor’s reason?" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="outcome">Outcome</label>
+                <select id="outcome" name="outcome">
+                    <option value="Disclosure">Disclosure</option>
+                    <option value="Modification">Modification</option>
+                    <option value="Destruction">Destruction</option>
+                    <option value="Interruption">Interruption</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="security-requirements">Security Requirements Breach</label>
+                <textarea id="security-requirements" name="security-requirements"
+                    placeholder="How would the security requirements be breached?" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="probability">Probability</label>
+                <select id="probability" name="probability">
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="consequences">Consequences</label>
+                <textarea id="consequences" name="consequences" placeholder="What are the consequences of the breach?"
+                    required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="financial">Financial Impact</label>
+                <select id="financial" name="financial" class="value-select" required>
+                    <option value="">Select Severity</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                <p>Score: <span class="risk-score" data-score="{{ impact_priorities.financial }}">
+                        {{ impact_priorities.financial }}</span></p>
+                <p>Calculated Score: <span id="financial-score" class="calculated-score">0</span></p>
+            </div>
+
+            <div class="form-group">
+                <label for="productivity">Productivity Impact</label>
+                <select id="productivity" name="productivity" class="value-select" required>
+                    <option value="">Select Severity</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                <p>Score: <span class="risk-score" data-score="{{ impact_priorities.productivity }}">
+                        {{ impact_priorities.productivity }}</span></p>
+                <p>Calculated Score: <span id="productivity-score" class="calculated-score">0</span></p>
+            </div>
+
+            <div class="form-group">
+                <label for="safety_health">Safety and Health Impact</label>
+                <select id="safety_health" name="safety_health" class="value-select" required>
+                    <option value="">Select Severity</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                <p>Score: <span class="risk-score" data-score="{{ impact_priorities.safety_health }}">
+                        {{ impact_priorities.safety_health }}</span></p>
+                <p>Calculated Score: <span id="safety_health-score" class="calculated-score">0</span></p>
+            </div>
+
+            <div class="form-group">
+                <label for="fines">Fines and Legal Penalties</label>
+                <select id="fines" name="fines" class="value-select" required>
+                    <option value="">Select Severity</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                <p>Score: <span class="risk-score" data-score="{{ impact_priorities.fines_legal_penalties }}">
+                        {{ impact_priorities.fines_legal_penalties }}</span></p>
+                <p>Calculated Score: <span id="fines-score" class="calculated-score">0</span></p>
+            </div>
+
+            <div class="form-group">
+                <label for="relative_score">Relative Risk Score</label>
+                <input type="number" id="relativeRiskScore" name="relative_score" placeholder="Calculated Risk Score"
+                    readonly>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="back-btn">Back</button>
+                <button type="submit" class="next-btn">Next</button>
+            </div>
+    </form>
+
+    <script>
+        function calculateRiskScore() {
+            let totalScore = 0;
+
+            // Retrieve each category's selected value and calculate its score
+            const valueSelects = document.querySelectorAll('.value-select');
+            const riskScores = document.querySelectorAll('.risk-score');
+            const calculatedScores = document.querySelectorAll('.calculated-score');
+
+            valueSelects.forEach((select, index) => {
+                const value = select.value;
+                const score = parseInt(riskScores[index].getAttribute('data-score')) || 0;
+
+                let valueWeight = 0;
+                switch (value) {
+                    case 'low':
+                        valueWeight = 1;
+                        break;
+                    case 'medium':
+                        valueWeight = 2;
+                        break;
+                    case 'high':
+                        valueWeight = 3;
+                        break;
+                    default:
+                        valueWeight = 0;
+                }
+
+                const categoryScore = valueWeight * score;
+                calculatedScores[index].textContent = categoryScore;
+
+                // Add to total score
+                totalScore += categoryScore;
+            });
+
+            // Update the overall relative risk score
+            document.getElementById('relativeRiskScore').value = totalScore;
+        }
+
+        // Trigger calculation when a selection changes
+        document.querySelectorAll('.value-select').forEach(select => {
+            select.addEventListener('change', calculateRiskScore);
+        });
+
+        // Trigger score calculation on page load if values are preselected
+        window.addEventListener('load', calculateRiskScore);
+    </script>
+</body>
+
+</html>

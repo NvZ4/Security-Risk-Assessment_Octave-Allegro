@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step One</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stepOne.css') }}">
+</head>
+
+<body>
+    <form action="/stepOne" method="POST">
+        <h2>Project Information</h2>
+
+        <div class="form-group">
+            <label for="project-title">Project Title</label>
+            <input type="text" id="project-title" name="project-title" placeholder="Enter project title" required>
+        </div>
+
+        <h2>Fill In Asset Information</h2>
+
+        <div class="form-group">
+            <label for="critical-asset">Critical Asset</label>
+            <input type="text" id="critical-asset" name="critical-asset" placeholder="Input the critical asset name"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label for="rationale">Rationale for Selection</label>
+            <textarea id="rationale" name="rationale" placeholder="Input the rationale for selection"
+                required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Input asset description" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="owner">Owner</label>
+            <input type="text" id="owner" name="owner" placeholder="Input the asset's owner" required>
+        </div>
+
+        <div class="form-group">
+            <label for="department">Department</label>
+            <input type="text" id="department" name="department" placeholder="Input the department" required>
+        </div>
+
+        <h3>Security Requirements</h3>
+
+        <div class="form-group">
+            <label for="confidentiality">Confidentiality</label>
+            <textarea id="confidentiality" name="confidentiality" placeholder="Input confidentiality description"
+                required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="integrity">Integrity</label>
+            <textarea id="integrity" name="integrity" placeholder="Input integrity description" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="availability">Availability</label>
+            <textarea id="availability" name="availability" placeholder="Input availability description"
+                required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="most-important-security">Most Important Security Requirement</label>
+            <select id="most-important-security" name="most-important-security" required>
+                <option value="confidentiality">Confidentiality</option>
+                <option value="integrity">Integrity</option>
+                <option value="availability">Availability</option>
+            </select>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" class="cancel-btn" onclick="window.history.back();">Cancel</button>
+            <button type="submit" class="next-btn">Next</button>
+        </div>
+    </form>
+</body>
+
+</html>

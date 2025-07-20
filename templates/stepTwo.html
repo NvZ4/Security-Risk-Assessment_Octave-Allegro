@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step Two</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stepTwo.css') }}">
+</head>
+
+<body>
+    <form action="/stepTwo" method="post">
+        <h2>Choose Priority of Your Asset</h2>
+
+        <div class="form-group">
+            <label for="reputation">Reputation and Consumer Trust</label>
+            <select id="reputation" name="reputation" required>
+                <option value="">Select Priority Value</option>
+                <option value="1">1 (Very Low)</option>
+                <option value="2">2 (Low)</option>
+                <option value="3">3 (Medium)</option>
+                <option value="4">4 (High)</option>
+                <option value="5">5 (Very High)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="finance">Finance</label>
+            <select id="finance" name="finance" required>
+                <option value="">Select Priority Value</option>
+                <option value="1">1 (Very Low)</option>
+                <option value="2">2 (Low)</option>
+                <option value="3">3 (Medium)</option>
+                <option value="4">4 (High)</option>
+                <option value="5">5 (Very High)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="productivity">Productivity</label>
+            <select id="productivity" name="productivity" required>
+                <option value="">Select Priority Value</option>
+                <option value="1">1 (Very Low)</option>
+                <option value="2">2 (Low)</option>
+                <option value="3">3 (Medium)</option>
+                <option value="4">4 (High)</option>
+                <option value="5">5 (Very High)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="safety">Safety and Health</label>
+            <select id="safety" name="safety" required>
+                <option value="">Select Priority Value</option>
+                <option value="1">1 (Very Low)</option>
+                <option value="2">2 (Low)</option>
+                <option value="3">3 (Medium)</option>
+                <option value="4">4 (High)</option>
+                <option value="5">5 (Very High)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="fines">Fines and Legal Sanctions</label>
+            <select id="fines" name="fines" required>
+                <option value="">Select Priority Value</option>
+                <option value="1">1 (Very Low)</option>
+                <option value="2">2 (Low)</option>
+                <option value="3">3 (Medium)</option>
+                <option value="4">4 (High)</option>
+                <option value="5">5 (Very High)</option>
+            </select>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" onclick="location.href='/stepOne'" class="back-btn">Back</button>
+            <button type="submit" class="next-btn">Next</button>
+        </div>
+    </form>
+    </form>
+</body>
+
+</html>

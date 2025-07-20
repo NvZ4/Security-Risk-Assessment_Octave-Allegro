@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stepFive.css') }}">
+    <title>Step Five</title>
+</head>
+
+<body>
+    <form action="/stepFive" method="post">
+        <h3>Mitigation Strategies</h3>
+        <div class="form-group">
+            <label for="technical-mitigation">Technical Mitigation</label>
+            <textarea id="technical-mitigation" name="technical-mitigation" placeholder="Describe technical mitigation"
+                required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="physical-mitigation">Physical Mitigation</label>
+            <textarea id="physical-mitigation" name="physical-mitigation" placeholder="Describe physical mitigation"
+                required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="people-mitigation">People Mitigation</label>
+            <textarea id="people-mitigation" name="people-mitigation" placeholder="Describe people mitigation"
+                required></textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" onclick="location.href='/stepFour'" class="back-btn">Back</button>
+            <button type="submit" class="next-btn">Submit</button>
+        </div>
+    </form>
+</body>
+
+</html>
