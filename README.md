@@ -96,5 +96,5 @@ The application will be available at http://127.0.0.1:5000.
 │   └── ...                 # Other HTML templates
 ├── app.py                  # Main Flask application file with routes and logic
 ├── requirements.txt        # Python package dependencies
+└── README.md
 ```
-└── README.md               # This file
